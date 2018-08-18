@@ -1,0 +1,112 @@
+    1  sudo apt-get update
+    2  sudo apt update
+    3  sudo apt install oracle-java10-installer
+    4  sudo add-apt-repository ppa:webupd8team/java
+    5  curl http://ftp.meisei-u.ac.jp/mirror/apache/dist/tomcat/tomcat-9/v9.0.10/bin/apache-tomcat-9.0.10.tar.gz
+    6  ls
+    7  curl -O http://ftp.meisei-u.ac.jp/mirror/apache/dist/tomcat/tomcat-9/v9.0.10/bin/apache-tomcat-9.0.10.tar.gz
+    8  ls
+    9  tar -xzvf apache-tomcat-9.0.10.tar.gz 
+   10  ls
+   11  sudo mv apache-tomcat-9.0.10/ /opt/
+   12  cd /opt/
+   13  ls
+   14  cd 
+   15  sudo /opt/apache-tomcat-9.0.10/bin/startup.sh 
+   16  history 
+   17  keytool -genkey -alias martiply -keyalg RSA -keysize 2048 -keystore www.martiply.com.pks
+   18  ls
+   19  rm www.martiply.com.pks 
+   20  openssl req -new -newkey rsa:2048 -nodes -keyout www.martiply.com.key -out www.martiply.com.csr
+   21  ls
+   22  cat www.martiply.com.csr 
+   23  ls
+   24  rm www.martiply.com.*
+   25  openssl req -new -newkey rsa:2048 -nodes -keyout www.martiply.com.key -out www.martiply.com.csr
+   26  cat www.martiply.com.csr 
+   27  mv www.martiply.com.csr /etc/ssl/certs/
+   28  sudo mv www.martiply.com.csr /etc/ssl/certs/
+   29  sudo mv www.martiply.com.key /etc/ssl/private/
+   30  ls
+   31  cat www_martiply_com.crt COMODORSADomainValidationSecureServerCA.crt COMODORSAAddTrustCA.crt >> www.martiply.com.ca-bundle.crt
+   32  ls
+   33  history 
+   34  sudo mv /etc/ssl/private/www.martiply.com.key /etc/ssl/
+   35  ls /etc/ssl/
+   36  ls /etc/ssl/private
+   37  sudo ls /etc/ssl/private
+   38  sudo ls /etc/ssl/certs
+   39  ls
+   40  sudo mv www.martiply.com.ca-bundle.crt /etc/ssl/
+   41  sudo mv www_martiply_com.crt /etc/ssl/
+   42  cd /etc/ssl
+   43  openssl dhparam -out dhparam2048.pem 2048
+   44  sudo openssl dhparam -out dhparam2048.pem 2048
+   45  ls
+   46  cd
+   47  history 
+   48  sudo apt-get install nginx
+   49  sudo vi /etc/nginx/nginx.conf 
+   50  history 
+   51  cd /etc/nginx/
+   52  ls
+   53  sudo vi gzip.conf
+   54  sudo vi ssl.conf
+   55  ls
+   56  history 
+   57  cd /etc/ssl/
+   58  ls
+   59  sudo mv www.martiply.com.key private/
+   60  cd certs
+   61  ls
+   62  cd ..
+   63  ls
+   64  cd 
+   65  ls
+   66  history 
+   67  cd /etc/nginx/
+   68  ls
+   69  sudo vi ssl.conf 
+   70  ls /etc/ssl/certs/
+   71  ls /etc/ssl/
+   72  cd /etc/ssl
+   73  sudo mv www*.* certs/
+   74  ls
+   75  sudo mv dhparam2048.pem certs/
+   76  cd /etc/nginx/
+   77  ls
+   78  sudo vi ssl.conf 
+   79  sudo mv /etc/ssl/certs/www.martiply.com.ca-bundle.crt /etc/ssl/certs/www.martiply.com.crt
+   80  sudo vi ssl.conf 
+   81  sudo mv /etc/ssl/certs/dhparam2048.pem /etc/ssl/certs/dhparam.pem
+   82  sudo vi vhost.conf
+   83  ls
+   84  mkdir vhost.d
+   85  sudo mkdir vhost.d
+   86  cd vhost.d/
+   87  sudo vi martiply.conf
+   88  cd 
+   89  sudo nginx -s reload
+   90  sudo vi /etc/nginx/vhost.d/martiply.conf 
+   91  sudo nginx -s reload
+   92  sudo vi /etc/nginx/vhost.d/martiply.conf 
+   93  sudo nginx -s reload
+   94  sudo service nginx restart
+   95  exit
+   96  history 
+   97  sudo vi /etc/nginx/vhost.d/martiply.conf 
+   98  sudo nginx -s reload
+   99  rm -r /opt/apache-tomcat-9.0.10/webapps/ROOT/
+  100  ls
+  101  mv ROOT.war /opt/apache-tomcat-9.0.10/webapps/
+  102  /opt/apache-tomcat-9.0.10/bin/shutdown.sh 
+  103  /opt/apache-tomcat-9.0.10/bin/startup.sh 
+  104  sudo /opt/apache-tomcat-9.0.10/bin/shutdown.sh 
+  105  sudo /opt/apache-tomcat-9.0.10/bin/startup.sh 
+  106  history 
+  107  ls /etc/nginx/
+  108* cp /etc/nginx/
+  109  ls
+  110  ls /etc/nginx/vhost.d/
+  111  cp /etc/nginx/vhost.d/martiply.conf .
+  112  history >> history.txt
