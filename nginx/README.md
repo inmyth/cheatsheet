@@ -12,12 +12,17 @@ openssl req -new -newkey rsa:2048 -nodes -keyout www.martiply.com.key -out www.m
 ```
 The content of csr is needed to create SSL certificates.
 
+Put `.key` in `/etc/ssl/private/`
+
+Put `.csr` in `/etc/ssl/certs/`
+
 ### crt Bundle
 
 Cat the certificates from COMODO, in order :
 ```
 cat www_martiply_com.crt COMODORSADomainValidationSecureServerCA.crt COMODORSAAddTrustCA.crt >> www.martiply.com.ca-bundle.crt
 ```
+Put this file in `/etc/ssl/certs/`
 
 ### DhParam
 
@@ -26,7 +31,6 @@ Generate with OpenSSL
 openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 ```
 
-put it `/etc/ssl/certs/dhparam.pem`
 
 ## Nginx Config
 
@@ -43,7 +47,7 @@ All `.conf` files except `domain.conf` go to `/etc/nginx/`
 - path to private key `.key` file
 - path to dhparam
 
-### Domain config 
+### Domain config
 - Refer to the maritply.conf which already provides
     - redirect from bare IP
     - upstream server where the real web server is running
