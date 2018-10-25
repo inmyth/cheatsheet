@@ -48,8 +48,12 @@ All `.conf` files except `domain.conf` go to `/etc/nginx/`
 - path to dhparam
 
 ### Domain config
-- Refer to the maritply.conf which already provides
+- Refer to the martiply.conf which already provides
     - redirect from bare IP
     - upstream server where the real web server is running
     - redirect from bare domain to www
     - redirect to https
+
+### http config
+- comment out this line `include /etc/nginx/sites-enabled/*;` by adding `#`
+    - https://stackoverflow.com/questions/15335002/nginx-simple-proxy-pass-to-localhost-not-working    
