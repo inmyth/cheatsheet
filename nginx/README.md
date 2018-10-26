@@ -57,3 +57,21 @@ All `.conf` files except `domain.conf` go to `/etc/nginx/`
 ### http config
 - comment out this line `include /etc/nginx/sites-enabled/*;` by adding `#`
     - https://stackoverflow.com/questions/15335002/nginx-simple-proxy-pass-to-localhost-not-working    
+
+### Proxy pass and path
+
+When passing request to another server, pay attention to the path
+```
+location /abc {
+  proxy_pass http://upstream
+}
+
+```
+Server at upstream will receive the request with its original path "/abc..."
+To remove this path, use /
+```
+location /abc/ {
+  proxy_pass http://upstream/
+}
+```
+https://stackoverflow.com/questions/15353935/correct-proxy-path-in-nginx-conf (comment of the first answer)
