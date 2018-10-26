@@ -75,3 +75,22 @@ location /abc/ {
 }
 ```
 https://stackoverflow.com/questions/15353935/correct-proxy-path-in-nginx-conf (comment of the first answer)
+
+### Allow / deny access
+- create folder `/etc/nginx/includes`
+- create any text file `whitelist` and put
+```
+allow 1.2.3.4; # Allow a single remote host
+deny all; # Deny everyone else
+```
+- in `xxx.cfg`
+```
+location / {
+  include includes/whitelist;
+  proxy_pass ...
+}
+```
+- restart
+
+https://support.hypernode.com/knowledgebase/blocking-allowing-ip-addresses-in-nginx/
+https://www.linkedin.com/pulse/tutorial-whitelisting-ip-addresses-nginx-easy-way-david-gracie/
