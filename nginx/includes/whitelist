@@ -1,0 +1,2 @@
+allow 10.240.0.2; # Allow main server where ssl resides
+deny all; # Deny everyone else

@@ -10,11 +10,17 @@ Use OpenSSL to generate private key and csr file
 ```
 openssl req -new -newkey rsa:2048 -nodes -keyout www.martiply.com.key -out www.martiply.com.csr
 ```
-The content of csr is needed to create SSL certificates.
+When entering Common Name, use the domain name (www.martiply.com)
+
+For wildcard certificate, use asterisk as subdomain (*.martiply.com)
+
+The content of csr is needed to create SSL certificates. Copy and paste it at the issuer website.
 
 Put `.key` in `/etc/ssl/private/`
 
 Put `.csr` in `/etc/ssl/certs/`
+
+**Important** Subdomains have to be registered at DNS table
 
 ### crt Bundle
 
@@ -31,7 +37,6 @@ Generate with OpenSSL
 openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 ```
 
-
 ## Nginx Config
 
 ### .conf directories
@@ -39,6 +44,8 @@ openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 All `.conf` files except `domain.conf` go to `/etc/nginx/`
 
 `domain.conf` goes to `/etc/nginx/vhost.d` (create this dir first)
+
+Examples here include single proxy pass and subdomain proxy pass. 
 
 ### SSL config
 
