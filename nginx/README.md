@@ -45,7 +45,7 @@ All `.conf` files except `domain.conf` go to `/etc/nginx/`
 
 `domain.conf` goes to `/etc/nginx/vhost.d` (create this dir first)
 
-Examples here include single proxy pass and subdomain proxy pass. 
+Examples here include single proxy pass and subdomain proxy pass.
 
 ### SSL config
 
@@ -60,6 +60,9 @@ Examples here include single proxy pass and subdomain proxy pass.
     - upstream server where the real web server is running
     - redirect from bare domain to www
     - redirect to https
+
+### Static files Single Page App
+- Refer to martiply.conf server_name  console.martiply.com;
 
 ### http config
 - comment out this line `include /etc/nginx/sites-enabled/*;` by adding `#`
