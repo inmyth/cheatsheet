@@ -3,6 +3,8 @@
 References
 - https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-16-04
 - https://qiita.com/kojirof/items/66d956609a45b04169f3
+- SSL https://gist.github.com/gangsta/9d011dc0da614db27d5b22ed2044799f
+
 
 ### CSR Generation
 
@@ -28,6 +30,11 @@ Cat the certificates from COMODO, in order :
 ```
 cat www_martiply_com.crt COMODORSADomainValidationSecureServerCA.crt COMODORSAAddTrustCA.crt >> www.martiply.com.ca-bundle.crt
 ```
+
+Or if Sectigo
+```
+cat SectigoRSADomainValidationSecureServerCA.crt USERTrustRSAAddTrustCA.crt AddTrustExternalCARoot.crt >> CA_bundle.crt
+```
 Put this file in `/etc/ssl/certs/`
 
 ### DhParam
@@ -49,10 +56,22 @@ Examples here include single proxy pass and subdomain proxy pass.
 
 ### SSL config
 
+
+
+Minimum build
+```
+ssl on;
+
+ssl_certificate /etc/ssl/certs/ssl_bundle.crt;
+ssl_certificate_key /etc/ssl/private/xxx.com.key;
+
+```
+Pay attention to `ssl on` .
+
 `ssl.conf` contains
 - path to bundled crt file
 - path to private key `.key` file
-- path to dhparam
+- path to dhparam (optional but requires more options enabled )
 
 ### Domain config
 - Refer to the martiply.conf which already provides
